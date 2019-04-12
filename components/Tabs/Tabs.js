@@ -3,14 +3,16 @@ class TabLink {
     // assign this.tabElement to the tabElement DOM reference
      this.tab=tab;
      
+     
     // Get the `data-tab` value from this.tabElement and store it here
-    //  this.tabData=document.querySelectorAll(`.tab[data-tab='${this.tab.dataset.tab}']`); 
-     this.tabData=this.tab.dataset.tab;
+      this.tabData=document.querySelectorAll(`.tab[data-tab='${this.tab.dataset.tab}']`); 
+    
+     
     // We need to find out if a user clicked 'all' cards or a specific category.  Follow the instructions 
     // below to accomplish this task:    
 
     // Check to see if this.tabData is equal to 'all'
-     if(this.tabData==="all"){
+     if(this.tabData="all"){
        // If `all` is true, select all cards regardless of their data attribute values
         this.cards = document.querySelectorAll(".card");
     
@@ -18,15 +20,16 @@ class TabLink {
      } else {
         // else if `all` is false, only select the cards with matching this.tabData values
          this.cards=document.querySelector(`.card[data-tab='${this.tabData.dataset.tab}']`);
-       
      }
   
   
      // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards 
     //  element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
-    this.cards = Array.from(this.cards).map(elem, function(obj){
-       new TabCard(this.obj);
-     });
+    this.cards = Array.from(this.cards);
+     console.log(this.cards);
+    // this.cards.map(function(card){
+    //    new TabCard(this.card);
+    //  });
 
     // Add a click event that invokes this.selectTab
     this.tab.addEventListener('click',()=>this.selectTab());
@@ -82,4 +85,6 @@ class TabCard {
 - In your .forEach() method's callback function, return a new instance of TabLink and pass in each tab as a parameter
 */
 
-let links = document.querySelectorAll(".tab").forEach(tab => new TabLink(tab));
+let tab = document.querySelectorAll(".tab").forEach(tab => new TabLink(tab));
+
+
