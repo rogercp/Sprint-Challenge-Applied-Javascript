@@ -12,14 +12,14 @@ class TabLink {
     // below to accomplish this task:    
 
     // Check to see if this.tabData is equal to 'all'
-     if(this.tabData="all"){
+     if(this.tabData==="all"){
        // If `all` is true, select all cards regardless of their data attribute values
         this.cards = document.querySelectorAll(".card");
     
 
      } else {
         // else if `all` is false, only select the cards with matching this.tabData values
-         this.cards=document.querySelector(`.card[data-tab='${this.tabData.dataset.tab}']`);
+         this.cards=document.querySelectorAll(`.card[data-tab='${this.tabData.dataset.tab}']`);
      }
   
   
@@ -27,8 +27,8 @@ class TabLink {
     //  element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
     this.cards = Array.from(this.cards);
 
-    this.cards.map(cardElement=>{
-       new TabCard(cardElement);
+    this.cards=this.cards.map(cardElement=>{
+       return new TabCard(cardElement);
      });
 
     // Add a click event that invokes this.selectTab
@@ -41,10 +41,11 @@ class TabLink {
     // Select all elements with the .tab class on them
    const tabs = document.querySelectorAll(".tab");
   
-    // Iterate through the NodeList removing the .active-tab class from each element
+    //Iterate through the NodeList removing the .active-tab class from each element
      tabs.forEach(current=>{
        current.classList.remove("active-tab")
      });
+  
 
     // Select all of the elements with the .card class on them
      const cards = document.querySelectorAll(".card");
@@ -53,6 +54,7 @@ class TabLink {
      cards.forEach(current=>{
       current.style.display='none';
      });
+  
     
     // Add a class of ".active-tab" to this.tabElement
      this.tab.classList.add("active-tab");
@@ -68,7 +70,6 @@ class TabCard {
   constructor(cardElement){
     // Assign this.cardElement to the cardElement DOM reference
     this.cardElement=cardElement;
-    console.log(this.cardElement);
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
