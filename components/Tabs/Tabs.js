@@ -5,7 +5,7 @@ class TabLink {
      
      
     // Get the `data-tab` value from this.tabElement and store it here
-      this.tabData=document.querySelectorAll(`.tab[data-tab='${this.tab.dataset.tab}']`); 
+      this.tabData=document.querySelector(`.tab[data-tab='${this.tab.dataset.tab}']`); 
     
      
     // We need to find out if a user clicked 'all' cards or a specific category.  Follow the instructions 
@@ -26,10 +26,10 @@ class TabLink {
      // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards 
     //  element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
     this.cards = Array.from(this.cards);
-     console.log(this.cards);
-    // this.cards.map(function(card){
-    //    new TabCard(this.card);
-    //  });
+
+    this.cards.map(cardElement=>{
+       new TabCard(cardElement);
+     });
 
     // Add a click event that invokes this.selectTab
     this.tab.addEventListener('click',()=>this.selectTab());
@@ -51,7 +51,7 @@ class TabLink {
 
     // Iterate through the NodeList setting the display style each one to 'none'
      cards.forEach(current=>{
-      current.style.display="none";
+      current.style.display='none';
      });
     
     // Add a class of ".active-tab" to this.tabElement
@@ -68,10 +68,11 @@ class TabCard {
   constructor(cardElement){
     // Assign this.cardElement to the cardElement DOM reference
     this.cardElement=cardElement;
+    console.log(this.cardElement);
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
-     this.cardElement.style.display="flex";
+    this.cardElement.style.display="flex";
   }
 
 }
